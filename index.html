@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VALERON — zamonaviy va sifatli kiyimlar.">
+  <title>VALERON — Sifat · Uslub · Ishonch</title>
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080808;
+      color: #f5f5f5;
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5,5,5,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #262626;
+    }
+
+    .nav {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 34px;
+      list-style: none;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .nav-links a:hover { color: white; }
+
+    .nav-social {
+      display: flex;
+      gap: 16px;
+      font-size: 18px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 760px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.78) 43%, rgba(0,0,0,.38) 100%),
+        url("6762.jpg") center/cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 78% 50%, transparent 0 20%, rgba(0,0,0,.48) 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding-top: 70px;
+    }
+
+    .logo {
+      width: 115px;
+      height: 115px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(255,255,255,.12));
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(55px, 9vw, 100px);
+      letter-spacing: 6px;
+      line-height: .95;
+      font-weight: 500;
+    }
+
+    .tagline {
+      margin-top: 20px;
+      letter-spacing: 6px;
+      font-size: 15px;
+      color: #ddd;
+    }
+
+    .hero-text {
+      margin-top: 26px;
+      max-width: 520px;
+      color: #bbb;
+      font-size: 17px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+      padding: 15px 26px;
+      background: #f5f5f5;
+      color: #080808;
+      border-radius: 5px;
+      font-weight: 700;
+      transition: .25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #ddd;
+    }
+
+    /* SECTION */
+    section { padding: 80px 0; }
+
+    .section-title {
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      letter-spacing: 5px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #888;
+      margin-top: 10px;
+    }
+
+    /* SOCIAL CARDS */
+    .social-grid {
+      margin-top: 45px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 15px;
+    }
+
+    .social-card {
+      min-height: 190px;
+      padding: 28px 20px;
+      border: 1px solid #303030;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #111, #090909);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      transition: .25s;
+    }
+
+    .social-card:hover {
+      transform: translateY(-7px);
+      border-color: #777;
+      background: #151515;
+    }
+
+    .social-icon {
+      width: 58px;
+      height: 58px;
+      border: 1px solid #555;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      font-size: 21px;
+      margin-bottom: 16px;
+    }
+
+    .social-card h3 { font-size: 17px; }
+    .social-card p { color: #777; font-size: 13px; margin-top: 5px; }
+    .arrow { margin-top: 13px; color: #aaa; }
+
+    /* BENEFITS */
+    .benefits {
+      border-top: 1px solid #242424;
+      border-bottom: 1px solid #242424;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 60px;
+    }
+
+    .benefit {
+      padding: 30px 20px;
+      text-align: center;
+      border-right: 1px solid #242424;
+    }
+
+    .benefit:last-child { border-right: 0; }
+
+    .benefit-icon { font-size: 28px; margin-bottom: 10px; }
+    .benefit h3 { font-size: 15px; }
+    .benefit p { color: #777; font-size: 12px; margin-top: 5px; }
+
+    /* ORDER */
+    .order {
+      text-align: center;
+      background: linear-gradient(#0d0d0d, #080808);
+      border-top: 1px solid #222;
+    }
+
+    .order p {
+      max-width: 600px;
+      margin: 15px auto 0;
+      color: #999;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #242424;
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-family: Georgia, serif;
+      font-size: 25px;
+      letter-spacing: 4px;
+    }
+
+    .footer-tagline {
+      color: #666;
+      font-size: 11px;
+      letter-spacing: 3px;
+      margin-top: 5px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 15px;
+      color: #aaa;
+    }
+
+    .copyright {
+      color: #555;
+      font-size: 11px;
+      margin-top: 15px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+      .social-card:last-child { grid-column: span 2; }
+      .benefits { grid-template-columns: repeat(2, 1fr); }
+      .benefit:nth-child(2) { border-right: 0; }
+      .benefit:nth-child(-n+2) { border-bottom: 1px solid #242424; }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(100% - 28px, 1180px); }
+
+      .nav { height: 62px; }
+      .brand { font-size: 21px; letter-spacing: 3px; }
+
+      .nav-links { display: none; }
+      .nav-social { font-size: 16px; }
+
+      .hero {
+        min-height: 720px;
+        background:
+          linear-gradient(90deg, rgba(0,0,0,.94), rgba(0,0,0,.70)),
+          url("6762.jpg") center/cover no-repeat;
+      }
+
+      .hero-content { padding-top: 45px; }
+      .logo { width: 85px; height: 85px; }
+      .hero h1 { font-size: 52px; letter-spacing: 4px; }
+      .tagline { font-size: 11px; letter-spacing: 3px; }
+      .hero-text { font-size: 15px; }
+
+      section { padding: 60px 0; }
+      .section-title { font-size: 26px; letter-spacing: 3px; }
+
+      .social-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .social-card { min-height: 165px; padding: 20px 10px; }
+      .social-card:last-child { grid-column: span 2; }
+
+      .benefits { margin-top: 40px; }
+      .benefit { padding: 24px 10px; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="brand">VALERON</a>
+
+    <ul class="nav-links">
+      <li><a href="#home">Bosh sahifa</a></li>
+      <li><a href="#social">Biz haqimizda</a></li>
+      <li><a href="#order">Buyurtma</a></li>
+    </ul>
+
+    <div class="nav-social">
+      <a href="https://t.me/YOUR_TELEGRAM" target="_blank" aria-label="Telegram">✈</a>
+      <a href="https://instagram.com/YOUR_INSTAGRAM" target="_blank" aria-label="Instagram">◎</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+
+        <!-- 6761.png o'rniga logotip faylingiz nomini yozishingiz mumkin -->
+        <img src="6761.png" alt="VALERON logo" class="logo">
+
+        <h1>VALERON</h1>
+
+        <div class="tagline">SIFAT · USLUB · ISHONCH</div>
+
+        <p class="hero-text">
+          Siz uchun zamonaviy va sifatli kiyimlar.
+          Endi birgina sahifada barcha ijtimoiy tarmoqlardan
+          biz bilan bog‘laning va buyurtma bering!
+        </p>
+
+        <a class="btn" href="#order">
+          🛒 &nbsp; Buyurtma berish
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="social">
+    <div class="container">
+
+      <h2 class="section-title">BIZNI KUZATIB BORING</h2>
+      <p class="section-subtitle">
+        Barcha ijtimoiy tarmoqlarda biz bilan aloqada bo‘ling
+      </p>
+
+      <div class="social-grid">
+
+        <a class="social-card"
+           href="https://instagram.com/YOUR_INSTAGRAM"
+           target="_blank">
+          <div class="social-icon">◎</div>
+          <h3>Instagram</h3>
+          <p>Bizning rasmiy sahifamiz</p>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="social-card"
+           href="https://t.me/YOUR_TELEGRAM"
+           target="_blank">
+          <div class="social-icon">✈</div>
+          <h3>Telegram</h3>
+          <p>Yangiliklar va aksiyalar</p>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="social-card"
+           href="https://youtube.com/@YOUR_YOUTUBE"
+           target="_blank">
+          <div class="social-icon">▶</div>
+          <h3>YouTube</h3>
+          <p>Video va ko‘rsatmalar</p>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="social-card"
+           href="https://uzum.uz/"
+           target="_blank">
+          <div class="social-icon">U</div>
+          <h3>Uzum Market</h3>
+          <p>Xarid uchun</p>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="social-card"
+           href="#home">
+          <div class="social-icon">◉</div>
+          <h3>Sayt</h3>
+          <p>Batafsil ma’lumot</p>
+          <div class="arrow">→</div>
+        </a>
+
+      </div>
+
+
+      <div class="benefits">
+
+        <div class="benefit">
+          <div class="benefit-icon">♢</div>
+          <h3>Sifat kafolati</h3>
+          <p>Har bir buyurtma tekshiriladi</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">□</div>
+          <h3>Tez yetkazib berish</h3>
+          <p>O‘zbekiston bo‘ylab</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">♧</div>
+          <h3>Qo‘llab-quvvatlash</h3>
+          <p>Savollaringiz uchun doim biz bilan</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">✓</div>
+          <h3>Ishonchli xarid</h3>
+          <p>Qulay va xavfsiz buyurtma</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="order" id="order">
+    <div class="container">
+      <h2 class="section-title">BUYURTMA BERISH</h2>
+
+      <p>
+        Kiyimlarni ko‘rish va buyurtma berish uchun
+        Instagram sahifamizga o‘ting.
+      </p>
+
+      <a class="btn"
+         href="https://instagram.com/YOUR_INSTAGRAM"
+         target="_blank">
+        Instagram orqali buyurtma
+      </a>
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container footer-inner">
+
+    <div>
+      <div class="footer-brand">VALERON</div>
+      <div class="footer-tagline">SIFAT · USLUB · ISHONCH</div>
+      <div class="copyright">
+        © 2026 Valeron. Barcha huquqlar himoyalangan.
+      </div>
+    </div>
+
+    <div class="footer-social">
+      <a href="https://instagram.com/YOUR_INSTAGRAM" target="_blank">Instagram</a>
+      <a href="https://t.me/YOUR_TELEGRAM" target="_blank">Telegram</a>
+      <a href="https://youtube.com/@YOUR_YOUTUBE" target="_blank">YouTube</a>
+      <a href="https://uzum.uz/" target="_blank">Uzum</a>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
